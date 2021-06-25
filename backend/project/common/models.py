@@ -1,11 +1,9 @@
-from django.db import models
-from abc import *
 from dataclasses import dataclass
-import json
+from project.common.abstracts import PrinterBase, ScraperBase, ReaderBase
 import googlemaps
-import pandas as pd
 from selenium import webdriver
-
+import pandas as pd
+import json
 
 @dataclass
 class FileDTO(object):
@@ -30,37 +28,6 @@ class FileDTO(object):
 
     @dframe.setter
     def dframe(self, dframe): self._dframe = dframe
-
-
-class PrinterBase(metaclass=ABCMeta):
-    @abstractmethod
-    def dframe(self):
-        pass
-
-
-class ReaderBase(metaclass=ABCMeta):
-
-    @abstractmethod
-    def new_file(self):
-        pass
-
-    @abstractmethod
-    def csv(self):
-        pass
-
-    @abstractmethod
-    def xls(self):
-        pass
-
-    @abstractmethod
-    def json(self):
-        pass
-
-
-class ScraperBase(metaclass=ABCMeta):
-    @abstractmethod
-    def driver(self):
-        pass
 
 
 class Printer(PrinterBase):

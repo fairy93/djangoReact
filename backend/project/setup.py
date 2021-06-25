@@ -5,11 +5,6 @@ setup_requires = [
 
 install_requires = [
     'django==3.2.4',
-    'html5lib==1.1',
-    'wheel==0.36.2',
-    'JPype1==1.3.0',
-    'konlpy==0.5.2',
-    'wordcloud==1.8.1'
 ]
 
 dependency_links = [
@@ -29,9 +24,9 @@ setup(
     scripts=['manage.py'],
     entry_points={
         'console_scripts': [
-            'publish = backend.common.script:main',
-            'scan = backend.crime.script:main',
-            'update = backend.gas_station.script:main',
+            'publish = project.common.script:main',
+            'scan = project.crime.script:main',
+            'update = project.gas_station.script:main',
         ],
     },
 )
