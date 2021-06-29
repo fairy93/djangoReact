@@ -1,7 +1,11 @@
 import React,{useState} from 'react'
 import './Signup.css'
 import { Button } from '@material-ui/core';
+import { userLogin, userSignup } from 'api';
+import {useHistory} from 'react-router'
+
 const SignUp = () => {
+  const history = useHistory()
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
@@ -11,6 +15,8 @@ const SignUp = () => {
 
   const {username, password, name, email} = userInfo
 
+
+  
   const handleChange = e => {
     const { name, value } = e.target
     setUserInfo({
@@ -23,6 +29,20 @@ const SignUp = () => {
   const handleSubmit = e => {
     e.preventDefault()
     alert(`전송 클릭: ${JSON.stringify({...userInfo})}`)
+    const singupRequest = {...userInfo}
+    userSignup(singupRequest)
+    .then(res=>{
+      alert(`회원가입완료:${res.data.result}`)
+      // history.push('login')
+    }) //성공
+    .catch(err=>{
+      alert(`회원가입 실패:${err}`)
+    }) //실패
+    
+    const loginRequest ={...userInfo}
+    userLogin(loginRequest)
+    .then()
+    .catch()
   }
 
   const handleClick = e => {
@@ -32,7 +52,7 @@ const SignUp = () => {
 
     return (<>
     <div className="Signup">
-    <form onSubmit={handleSubmit} method="post" style={{border:"1px solid #ccc"}}>
+    <form onSubmit={handleSubmit} method="get" style={{border:"1px solid #ccc"}}>
       <div className="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
