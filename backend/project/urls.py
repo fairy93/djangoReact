@@ -1,4 +1,3 @@
-
 """admin URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,13 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
-from member.views import Auth
+from django.urls import path, include
 from common.views import Connection
-from django.conf.urls import url, include
+from rest_framework import routers
 
+router = routers.DefaultRouter()
 urlpatterns = [
     path('connection', Connection.as_view()),
     path('board', include('board.urls')),
-    url(r'^member/', Auth.as_view()),
+    path('member', include('member.urls')),
+    # path('connection', Connection.as_view()),
+    # path('board', include('board.urls')),
+    # url(r'^member/', Auth.as_view()),
 ]

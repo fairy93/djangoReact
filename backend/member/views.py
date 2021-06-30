@@ -1,26 +1,47 @@
-from django.shortcuts import render
-# Create your views here.
 
-from django.http import HttpResponse, JsonResponse
-from member.serializers import MemberSerializer
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
-from member.models import Member
-from member.serializers import MemberSerializer
+import json
+from .models import membervo
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from member.serializers import MemberSerializer
 from icecream import ic
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from member.serializers import MemberSerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from icecream import ic
+from rest_framework.parsers import JSONParser
 
-
-class Auth(APIView):
-    def get(self, request):
-        # ic(request)
-        ic('저장1')
-        serializer = MemberSerializer(data=request)
+class Members(APIView):
+    def post(self, request):
+        # data = request.data['body']
+        data = json.loads(request.body)
+        membervo.objects.create()
+        ic(data)
+        serializer = MemberSerializer(data=data)
         if serializer.is_valid():
-            ic('저장2ㄴ')
-            serializer.sae()
-        return Response({'result': 'WELCOME'})
+            serializer.save()
+            return Response({'result': f'Welcome, {serializer.data.get("name")}'}, status=201)
+        ic(serializer.errors)
+        return Response(serializer.errors, status=400)
+
+
+class Member(APIView):
+    def get(self, request):
+        pass
+
+
+# class Auth(APIView):
+#     def get(self, request):
+#         # ic(request)
+#         ic('저장1')
+#         serializer = MemberSerializer(data=request)
+#         if serializer.is_valid():
+#             ic('저장2ㄴ')
+#             serializer.sae()
+#         return Response({'result': 'WELCOME'})
 
 @csrf_exempt
 def member_list(request):

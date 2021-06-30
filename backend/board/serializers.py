@@ -1,19 +1,23 @@
 from rest_framework import serializers
-from board.models import Post
+from board.models import PostVO as post
 
 
 class boardSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
+    # id = serializers.IntegerField()
     title = serializers.CharField()
-    content = serializers.TextField()
-    created_at = serializers.DateTimeField()
-    updated_at = serializers.DateTimeField()
+    content = serializers.CharField()
+    created_at = serializers.DateTimeField(read_only=True)
+    updated_at = serializers.DateTimeField(read_only=True)
+
+    class Meta:
+        model = post
+        fields = '__all__'
 
     def create(self, validated_data):
         """
         Create and return a new `Snippet` instance, given the validated data.
         """
-        return Post.objects.create(**validated_data)
+        return post.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         """
