@@ -1,63 +1,32 @@
-
-import json
-from .models import membervo
-from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from member.serializers import MemberSerializer
 from icecream import ic
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
-from member.serializers import MemberSerializer
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from icecream import ic
-from rest_framework.parsers import JSONParser
-
-class Members(APIView):
-    def post(self, request):
-        # data = request.data['body']
-        data = json.loads(request.body)
-        membervo.objects.create()
-        ic(data)
-        serializer = MemberSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'result': f'Welcome, {serializer.data.get("name")}'}, status=201)
-        ic(serializer.errors)
-        return Response(serializer.errors, status=400)
+from member.serializers import MemberSerializer, UserLoginSerializer
 
 
-class Member(APIView):
-    def get(self, request):
-        pass
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def signup(request):
+    serializer = MemberSerializer(data=request.data['body'])
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
 
 
-# class Auth(APIView):
-#     def get(self, request):
-#         # ic(request)
-#         ic('저장1')
-#         serializer = MemberSerializer(data=request)
-#         if serializer.is_valid():
-#             ic('저장2ㄴ')
-#             serializer.sae()
-#         return Response({'result': 'WELCOME'})
-
-@csrf_exempt
-def member_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-
-    if request.method == 'GET':
-        snippets = Member.objects.all()
-        serializer = MemberSerializer(snippets, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = MemberSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def login(request):
+    if request.method == 'POST':
+        serializer = UserLoginSerializer(data=request.data['body'])
+        if not serializer.is_valid():
+            return Response({"message": "Request Body Error."}, status=status.HTTP_409_CONFLICT)
+        if serializer.validated_data['username'] == "None":
+            return Response({'message': 'fail'}, status=status.HTTP_200_OK)
+        response = {
+            'success': True,
+            'token': serializer.data['token']
+        }
+        return Response(response, status=status.HTTP_200_OK)

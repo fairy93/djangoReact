@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class membervo(models.Model):
+class Member(models.Model):
     username = models.CharField(primary_key=True, max_length=10)
     password = models.CharField(max_length=10)
     name = models.TextField()

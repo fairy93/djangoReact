@@ -69,7 +69,9 @@ distributed @ file:///C:/ci/distributed_1617384289923/work
 Django==3.2.4
 django-cors-headers==3.7.0
 django-filter==2.4.0
+django-rest-authtoken==2.1.3
 djangorestframework==3.12.4
+djangorestframework-jwt==1.11.0
 docutils @ file:///C:/ci/docutils_1617481617511/work
 entrypoints==0.3
 et-xmlfile==1.0.1
@@ -198,6 +200,7 @@ pydocstyle @ file:///tmp/build/80754af9/pydocstyle_1616182067796/work
 pyerfa @ file:///C:/ci/pyerfa_1619391071834/work
 pyflakes @ file:///home/ktietz/src/ci_ipy2/pyflakes_1612551159640/work
 Pygments @ file:///tmp/build/80754af9/pygments_1615143339740/work
+PyJWT==1.7.1
 pylint @ file:///C:/ci/pylint_1617136058775/work
 pyls-black @ file:///tmp/build/80754af9/pyls-black_1607553132291/work
 pyls-spyder @ file:///tmp/build/80754af9/pyls-spyder_1613849700860/work

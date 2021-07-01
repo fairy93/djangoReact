@@ -1,9 +1,8 @@
 from django.conf.urls import url
-from .views import Members as members
 
-# from .views import Members as members
+from . import views
+
 urlpatterns = [
-    url('/signup', members.as_view()),
-    # path('member/singup',views.member_list)
-
+    url('/signup', views.signup),
+    url('/login', views.login)
 ]

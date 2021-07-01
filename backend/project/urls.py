@@ -15,14 +15,10 @@ Including another URLconf
 """
 from django.urls import path, include
 from common.views import Connection
-from rest_framework import routers
 
-router = routers.DefaultRouter()
 urlpatterns = [
     path('connection', Connection.as_view()),
     path('board', include('board.urls')),
     path('member', include('member.urls')),
-    # path('connection', Connection.as_view()),
-    # path('board', include('board.urls')),
-    # url(r'^member/', Auth.as_view()),
+    # url(^api/post',include('board.urls)),
 ]
