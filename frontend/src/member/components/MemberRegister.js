@@ -1,11 +1,9 @@
 import React,{useState} from 'react'
-import './Signup.css'
+import '../styles/MemberRegister.css'
+import { memberRegister } from 'api'
 import { Button } from '@material-ui/core';
-import { userLogin, userSignup } from 'api';
-import {useHistory} from 'react-router'
 
-const SignUp = () => {
-  const history = useHistory()
+const MemberRegister = () => {
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
@@ -13,10 +11,8 @@ const SignUp = () => {
     email: ''
   })
 
-  const {username, password, name, email} = userInfo
+  const {username, password, name, email} = `userInfo`
 
-
-  
   const handleChange = e => {
     const { name, value } = e.target
     setUserInfo({
@@ -29,19 +25,14 @@ const SignUp = () => {
   const handleSubmit = e => {
     e.preventDefault()
     alert(`전송 클릭: ${JSON.stringify({...userInfo})}`)
-    userSignup({...userInfo})
+    memberRegister({...userInfo})
     .then(res=>{
-      alert(`회원가입완료:${res.data.result}`)
-      // history.push('login')
-    }) //성공
+      alert(`회원가입 완료`)
+    }) 
     .catch(err=>{
-      alert(`회원가입 실패:${err}`)
-    }) //실패
+      alert(`회원가입 실패 ${err}`)
+    }) 
     
-    const loginRequest ={...userInfo}
-    userLogin(loginRequest)
-    .then()
-    .catch()
   }
 
   const handleClick = e => {
@@ -57,7 +48,7 @@ const SignUp = () => {
         <p>Please fill in this form to create an account.</p>
         <hr/>
 
-        <label for="username"><b>User ID</b></label>
+        <label for="username"> <b>User ID</b></label>
         <input type="text" placeholder="Enter ID" onChange={handleChange}   name="username" value={username}/>
 
         <label for="password"><b>Password</b></label>
@@ -69,12 +60,9 @@ const SignUp = () => {
         <label for="email"><b>Email</b></label>
         <input type="text" placeholder="Enter Email" onChange={handleChange}  name="email" value={email} />
 
-        <p>By creating an account you agree to our <a href="#" style={{color:"dodgerblue"}}>Terms & Privacy</a>.</p>
-
         <div class="clearfix">
           <button type="submit" className="signupbtn">Sign Up</button>
-          <button type="button" className="cancelbtn" onClick={handleClick}>Cancel</button>
-          
+          <button type="button" className="cancelbtn" onClick={handleClick}>Cancel</button>     
         </div>
       </div>
   </form>
@@ -82,4 +70,4 @@ const SignUp = () => {
 </>)
 }
 
-export default SignUp
+export default memberRegister

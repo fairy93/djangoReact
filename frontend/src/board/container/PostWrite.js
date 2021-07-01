@@ -5,6 +5,26 @@ import {useHistory} from 'react-router'
 import { Postwrite } from 'api';
 
 const PostWrite = () => {
+/*
+const [post, setPost] =useState({
+  title:'',
+  content:''
+})
+  const {title, content} = post
+  const handleClick = e => {
+    e.preventDefault()
+  }
+  const handleSubmit = e => {
+    e.preventDefault()
+  }
+  const handleChange = e => {
+    const {name: name, value:value} = e.target
+    setPost({
+      ..post,
+      [name] : value
+    })
+  }*/
+
   const history = useHistory()
   const [userInfo, setUserInfo] = useState({
     title: '',

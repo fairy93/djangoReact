@@ -80,7 +80,7 @@ export default function SearchAppBar() {
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
               <Link to='/home'>Home</Link>&nbsp;&nbsp;
-              <Link to='/user'>User</Link>&nbsp;&nbsp;
+              <Link to='/member'>User</Link>&nbsp;&nbsp;
               <Link to='/item'>Item</Link>&nbsp;&nbsp;
               <Link to='/blog'>Blog</Link>&nbsp;&nbsp;
               <Link to='/stock'>Stock</Link>&nbsp;&nbsp;

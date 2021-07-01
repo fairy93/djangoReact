@@ -1,14 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const UserMenu = () => (<nav>
-        <ol>
-            <li><Link to='/signup-form'>회원가입</Link></li>
-            <li><Link to='/login-form'>로그인</Link></li>
-            <li><Link to='/user-detail'>회원정보상세</Link></li>
-            <li><Link to='/user-modify'>회원정보수정</Link></li>
-            <li><Link to='/user-remove'>회원정보삭제</Link></li>
-        </ol>
+export const MemberMenu = () => (<nav>
+    <ol>
+        <li><Link to='/member-login'>회원로그인</Link></li>
+        <li><Link to='/member-list'>회원목록</Link></li>
+        <li><Link to='/member-register'>회원등록</Link></li>
+        <li><Link to='/member-retreive'>회원조회</Link></li>
+        <li><Link to='/member-detail'>회원상세</Link></li>
+        <li><Link to='/member-modify'>회원수정</Link></li>
+        <li><Link to='/member-delete'>회원탈퇴</Link></li>
+    </ol>
 </nav>
 
 )
