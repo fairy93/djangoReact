@@ -70,4 +70,4 @@ const MemberRegister = () => {
 </>)
 }
 
-export default memberRegister
+export default MemberRegister

@@ -9,6 +9,7 @@ from member.serializers import MemberSerializer, UserLoginSerializer
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def signup(request):
+    ic(request)
     serializer = MemberSerializer(data=request.data['body'])
     if serializer.is_valid():
         serializer.save()
