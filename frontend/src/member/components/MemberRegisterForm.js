@@ -1,9 +1,8 @@
 import React,{useState} from 'react'
 import '../styles/MemberRegister.css'
 import { memberRegister } from 'api'
-import { Button } from '@material-ui/core';
 
-const MemberRegister = () => {
+const MemberRegisterForm = () => {
   const [userInfo, setUserInfo] = useState({
     email: '',
     username: '',
@@ -26,7 +25,7 @@ const MemberRegister = () => {
     alert(`전송 클릭: ${JSON.stringify({...userInfo})}`)
     memberRegister({...userInfo})
     .then(res=>{
-      alert(`회원가입 완료`)
+      alert(`회원가입 완료 ${userInfo.username}`)
     }) 
     .catch(err=>{
       alert(`회원가입 실패 ${err}`)
@@ -65,4 +64,4 @@ const MemberRegister = () => {
 </>)
 }
 
-export default MemberRegister
+export default MemberRegisterForm

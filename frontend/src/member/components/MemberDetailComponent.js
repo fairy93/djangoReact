@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import '../styles/MemberDetail.css'
 
-const MemberDetail = () => {
+const MemberDetailComponent = () => {
     return (<>
     <h1>안녕</h1>
         <hr/>
@@ -9,4 +9,4 @@ const MemberDetail = () => {
       </>)
 }
 
-export default MemberDetail
+export default MemberDetailComponent

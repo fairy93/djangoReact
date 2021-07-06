@@ -1,9 +1,9 @@
 import { memberLogin } from 'api'
 import React,{useState} from 'react'
-import { Button } from '@material-ui/core';
+import { useHistory } from 'react-router'
 
-
-const MemberLogin = () => {
+const MemberLoginForm = () => {
+  const history = useHistory()
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
@@ -19,10 +19,11 @@ const MemberLogin = () => {
       }
       return response;
     }
-    
     memberLogin({...userInfo})
     .then(res => {
-      alert(`로그인 성공`)
+      alert(`로그인 성공 ${res.data.token}`)
+      localStorage.setItem("loginedMember", JSON.stringify(res.data))
+      history.push('/member-list')
     })
     .catch(err => {
       alert(`로그인 실패 ${err} `)
@@ -31,7 +32,8 @@ const MemberLogin = () => {
 
   const handleClick = e => {
     e.preventDefault()
-    alert('취소 클릭')
+    alert(`로그인 실패  `)
+    // alert('취소 클릭')
   }
 
   const handleChange = e => {
@@ -72,4 +74,4 @@ const MemberLogin = () => {
   </>)
 }
 
-export default MemberLogin
+export default MemberLoginForm

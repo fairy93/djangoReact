@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import '../styles/MemberModify.css'
 
-const MemberModify = () => {
+const MemberModifyForm = () => {
 
 }
 
-export default MemberModify
+export default MemberModifyForm
