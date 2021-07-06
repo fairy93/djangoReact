@@ -5,11 +5,11 @@ import { Button } from '@material-ui/core';
 
 const MemberLogin = () => {
   const [userInfo, setUserInfo] = useState({
-    username: '',
+    email: '',
     password: '',
   })
 
-  const {username, password} = `userInfo`
+  const {email, password} = `userInfo`
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -51,8 +51,8 @@ const MemberLogin = () => {
       </div>
 
       <div className="container">
-        <label labelFor="uname"><b>UserID</b></label>
-        <input type="text" placeholder="Enter ID" onChange={handleChange}   name="username" value={username}/>
+        <label labelFor="uname"><b>Email</b></label>
+        <input type="text" placeholder="Enter ID" onChange={handleChange}   name="email" value={email}/>
 
 
         <label labelFor="psw"><b>Password</b></label>

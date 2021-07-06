@@ -1,23 +1,9 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-
-# class Member(models.Model):
-#     username = models.CharField(primary_key=True, max_length=10)
-#     password = models.CharField(max_length=10)
-#     name = models.TextField()
-#     email = models.EmailField()
-#
-#     class Meta:
-#         managed = True
-#         db_table = 'members'
-#
-#     def __str__(self):
-#         return f'[{self.pk}] {self.username}'
-
-from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.db import models
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -49,9 +35,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    """
-    customized User
-    """
     email = models.EmailField(
         verbose_name=_('email id'),
         max_length=64,
