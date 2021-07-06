@@ -1,5 +1,5 @@
 from pathlib import Path
-from my_setting import SECRET, DATABASES
+from my_settings import SECRET, DATABASES
 import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
