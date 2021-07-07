@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.models import update_last_login
 from django.contrib.auth.hashers import check_password
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from rest_framework_jwt.settings import api_settings
 from rest_framework import serializers
+from icecream import ic
 
 User = get_user_model()
 
@@ -12,7 +13,6 @@ class UserCreateSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
-    print(email)
 
     def create(self, validated_data):
         user = User.objects.create(
